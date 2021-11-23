@@ -63,3 +63,30 @@ for (let i = 0; i < 1000000; i++) {
 let end = new Date();
 
 alert(`Cickle work ${end - start} milisecond`); */
+
+/* function user(name, id) {
+    this.name = name;
+    this.id = id;
+    this.human = true;
+    this.hello = function() {
+        console.log(`Hello${this.name}`);
+    };
+}
+
+user.prototype.exit = function() {
+    console.log(`User ${this.name} out`);
+};
+
+
+
+ const ivan = new user('Ivan', 28); */
+// const alex = new user('Alex', 20);
+// ivan.hello();
+// alex.hello();
+//ivan.exit();
+
+class User {
+    constructor(){
+        
+    }
+}

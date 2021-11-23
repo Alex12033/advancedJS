@@ -1,3 +1,4 @@
+'use strict';
 
 /* const btn = document.querySelector('.btn');
 let timerId,
@@ -85,8 +86,89 @@ user.prototype.exit = function() {
 // alex.hello();
 //ivan.exit();
 
-class User {
+/* class User {
     constructor(){
         
     }
+} */
+
+//1 simple function: this = window but if use strict mode - undefined
+/* function showThis() {
+    console.log(this);
 }
+showThis(); */
+// function showThis(a, b) {
+//     console.log(this);
+//     function sum() {
+//         console.log(this);
+//         return a + b;
+//     }
+//     console.log(sum());
+// }
+// showThis(4, 5);
+
+//2 if we use this in context method of object this return us object
+// const obj = {
+//     a: 20,
+//     b:15,
+//     sum: function() {
+//         console.log(this);
+//     }
+// };
+// obj.sum();
+
+//3 this in constructor and classes - this is new instance(exemplar) of object
+/* function User(name, id) {
+    this.name = name;
+    this.id = id;
+    this.human = true;
+    this.hello = function() {
+        console.log("Hello ", this.name);
+    };
+}
+let ivan = new User('Ivan', 23);
+ */
+ 
+//4 handlle to bind this context: call, apply, bind
+// function sayName(surname) {
+//     console.log(this);
+//     console.log(this.name + surname);
+// }
+
+// const user = {
+//     name: 'john'
+// };
+
+// sayName.call(user, 'Smith');
+// sayName.apply(user, ['Smith']);
+
+// function count(num) {
+//     return this*num;
+// }
+// const double = count.bind(2);
+// console.log(double(3));
+// console.log(double(13));
+
+//5 
+/* const btn = document.querySelector('button');
+
+btn.addEventListener('click', function(){
+    this.style.backgroundColor = 'red';
+});
+
+let obj = {
+    num: 5,
+    sayNamber: function() {
+        const say = () => {
+            console.log(this);
+        };
+        say();
+    }
+};
+obj.sayNamber(); */
+
+//const calc = (a) => a * 2;
+//console.log(calc(2));
+
+
+ 

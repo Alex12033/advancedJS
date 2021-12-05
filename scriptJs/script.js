@@ -197,3 +197,13 @@ class ColoredRectangleWithText extends Rectangle {
 const div = new ColoredRectangleWithText(25, 10, 'Hello World', 'red');
  div.showMyProps();
  console.log(div.calcArea(20, 20)); */
+
+ const log = function(a, b, ...rest) {
+    console.log(a, b, rest);
+ };
+ log('basic', 'rest', 'operaotr', 'usage');
+
+ function calcODrDouble(number, basis = 2) {
+    console.log(number * basis);
+ }
+calcODrDouble(2);

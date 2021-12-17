@@ -213,6 +213,60 @@ window.addEventListener('DOMContentLoaded', () => {
         12,
         '.menu .container', 'menu__item'
     ).render();
+
+
+    // Forms
+
+    const forms = document.querySelectorAll('form');
+
+    const message = {
+        loading: 'Load',
+        success: 'thank you',
+        failure: 'wrong'
+    };
+
+    forms.forEach(item => {
+        postData(item);
+    });
+
+    function postData(form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const statusMsg = document.createElement('div');
+            statusMsg.classList.add('status');
+            statusMsg.textContent = message.loading;
+            form.append(statusMsg);
+
+            const req = new XMLHttpRequest();
+            req.open('POST', 'server.php');
+
+            req.setRequestHeader('Content-type', 'application/json');
+            const formData = new FormData(form);
+
+            const obj = {};
+            formData.forEach(function(value, key) {
+                obj[key] = value;
+            });
+
+            const json = JSON.stringify(obj);
+
+            req.send(json);
+
+            req.addEventListener('load', () => {
+                if (req.status === 200) {
+                    console.log(req.response);
+                    statusMsg.textContent = message.success;
+                    form.reset();
+                    setTimeout(() => {
+                        statusMsg.remove();
+                    }, 2000);
+                } else {
+                    statusMsg.textContent = message.success;
+                }
+            });
+        });        
+    }
 });
 
 

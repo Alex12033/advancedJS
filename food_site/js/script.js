@@ -237,7 +237,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 display: block;
                 margin: 0 auto;
             `;
-            form.append(statusMsg);
+            form.insertAdjacentElement('afterend', statusMsg);
 
             const req = new XMLHttpRequest();
             req.open('POST', 'server.php');

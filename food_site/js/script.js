@@ -93,8 +93,7 @@ window.addEventListener('DOMContentLoaded', () => {
     //modal
 
     const modalTrigger = document.querySelectorAll('[data-modal]'),
-        modal = document.querySelector('.modal'),
-        modalCloseBtn = document.querySelector('[data-close]');
+        modal = document.querySelector('.modal');
 
 
     function openModal() {
@@ -112,10 +111,9 @@ window.addEventListener('DOMContentLoaded', () => {
         modal.classList.remove('show');
         document.body.style.overflow = '';
     }
-    modalCloseBtn.addEventListener('click', closeModal);
 
     modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
+        if (e.target === modal || e.target.getAttribute('data-close') == '') {
             closeModal();
         }
     });
@@ -126,7 +124,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const modalTimerId = setTimeout(openModal, 3000);
+    const modalTimerId = setTimeout(openModal, 50000);
 
     function showModalByScroll() {
         if (window.pageXOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight) {
@@ -256,16 +254,38 @@ window.addEventListener('DOMContentLoaded', () => {
             req.addEventListener('load', () => {
                 if (req.status === 200) {
                     console.log(req.response);
-                    statusMsg.textContent = message.success;
+                    showThanksModal(message.success);
                     form.reset();
-                    setTimeout(() => {
-                        statusMsg.remove();
-                    }, 2000);
+                    statusMsg.remove();
                 } else {
-                    statusMsg.textContent = message.success;
+                    showThanksModal(message.failure);
                 }
             });
         });        
+    }
+
+    function showThanksModal(msg) {
+        const prevModalDialog = document.querySelector('.modal__dialog');
+        
+        prevModalDialog.classList.add('hide');
+        openModal();
+
+        const thanksModal = document.createElement('div');
+        thanksModal.classList.add('modal__dialog');
+        thanksModal.innerHTML = `
+            <div class="modal__content">
+                <div class="modal__close" data-close>x</div>
+                <div calss="modal__title">${msg}</div>
+            </div>
+        `;
+
+        document.querySelector('.modal').append(thanksModal);
+        setTimeout(() => {
+            thanksModal.remove();
+            prevModalDialog.classList.add('show');
+            prevModalDialog.classList.remove('hide');
+            closeModal();
+        }, 4000);
     }
 });
 

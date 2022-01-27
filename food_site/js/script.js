@@ -275,11 +275,19 @@ window.addEventListener('DOMContentLoaded', () => {
     //slider
     const next = document.querySelector('.offer__slider-next'),
         prev = document.querySelector('.offer__slider-prev'),
-        slides = document.querySelectorAll('.offer__slide');
+        slides = document.querySelectorAll('.offer__slide'),
+        total = document.querySelector('#total'),
+        current = document.querySelector('#current');
 
     let indexSlide = 1;
     
     displaySlides(indexSlide);
+
+    if (slides.length < 10) {
+        total.textContent = `0${slides.length}`;
+    } else {
+        total.textContent = slides.length;
+    }
     
     function displaySlides(n) {
         if (n > slides.length) {
@@ -293,6 +301,12 @@ window.addEventListener('DOMContentLoaded', () => {
         slides.forEach(elem => elem.style.display = 'none');
 
         slides[indexSlide - 1].style.display = 'block';
+
+        if (slides.length < 10) {
+            current.textContent = `0${indexSlide}`;
+        } else {
+            current.textContent = indexSlide;
+        }
     }
 
 
@@ -307,7 +321,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     next.addEventListener('click', () => {
         plusSlide(1);
-    });    
+    });
+
 });
 
 

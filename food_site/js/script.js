@@ -178,7 +178,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const getResource = async (url, data) => {
+    const getResource = async (url) => {
         const res = await fetch(url);
 
         if (!res.ok) {

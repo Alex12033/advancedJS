@@ -348,14 +348,14 @@ a {
 /*animation for slider*/
 .anim {
     -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
+    -webkit-animation-duration: 2s;
     animation-name: fade;
-    animation-duration: 1.5s;
+    animation-duration: 2s;
 }
 
 @-webkit-keyframes anim {
     from {
-        opacity: .4
+        opacity: .3
     }
 
     to {
@@ -365,7 +365,7 @@ a {
 
 @keyframes anim {
     from {
-        opacity: .4
+        opacity: .3
     }
 
     to {
